@@ -6,9 +6,9 @@ const convert = require('koa-connect');
 const history = require('connect-history-api-fallback');
 
 module.exports = (env = {}) => ({
-  mode: env.production ? 'production' : 'development',
+  mode: env.testing ? 'none' : env.production ? 'production' : 'development',
 
-  entry: './src/index.js',
+  entry: env.testing ? './tests/index.js' : './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
